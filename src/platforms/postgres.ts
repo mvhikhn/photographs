@@ -3,9 +3,9 @@ import { removeParamsFromUrl } from '@/utility/url';
 import { Pool, QueryResult, QueryResultRow } from 'pg';
 
 const pool = new Pool({
-  ...process.env.POSTGRES_URL && {
+  ...(process.env.POSTGRES_URL || process.env.POSTGRES_PRISMA_URL) && {
     connectionString: removeParamsFromUrl(
-      process.env.POSTGRES_URL,
+      process.env.POSTGRES_URL || process.env.POSTGRES_PRISMA_URL || '',
       ['sslmode'],
     ),
   },

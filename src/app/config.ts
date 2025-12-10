@@ -24,8 +24,8 @@ export const TEMPLATE_DESCRIPTION = 'Store photos with original camera data';
 
 // SOURCE CODE
 
-export const TEMPLATE_REPO_OWNER  = 'sambecker';
-export const TEMPLATE_REPO_NAME   = 'exif-photo-blog';
+export const TEMPLATE_REPO_OWNER = 'sambecker';
+export const TEMPLATE_REPO_NAME = 'exif-photo-blog';
 export const TEMPLATE_REPO_BRANCH = 'main';
 export const TEMPLATE_REPO_URL =
   `https://github.com/${TEMPLATE_REPO_OWNER}/${TEMPLATE_REPO_NAME}`;
@@ -155,7 +155,8 @@ export const PAGE_ABOUT =
 
 // STORAGE: DATABASE
 export const HAS_DATABASE =
-  Boolean(process.env.POSTGRES_URL);
+  Boolean(process.env.POSTGRES_URL) ||
+  Boolean(process.env.POSTGRES_PRISMA_URL);
 export const POSTGRES_SSL_ENABLED =
   process.env.DISABLE_POSTGRES_SSL === '1' ? false : true;
 
