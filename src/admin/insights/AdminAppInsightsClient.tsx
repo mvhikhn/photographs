@@ -56,8 +56,8 @@ const DEBUG_COMMIT_MESSAGE = 'Long commit message for debugging purposes';
 const DEBUG_BEHIND_BY = 9;
 const DEBUG_PHOTOS_NEED_SYNC_COUNT = 7;
 
-const TEXT_COLOR_WARNING = 'text-amber-600 dark:text-amber-500';
-const TEXT_COLOR_BLUE = 'text-blue-600 dark:text-blue-500';
+const TEXT_COLOR_WARNING  = 'text-amber-600 dark:text-amber-500';
+const TEXT_COLOR_BLUE     = 'text-blue-600 dark:text-blue-500';
 
 const readmeAnchor = (anchor: string) =>
   <AdminLink href={`${TEMPLATE_REPO_URL_README}#${anchor}`}>
@@ -78,7 +78,7 @@ const renderLabeledEnvVar = (
       ? <div className="flex items-center gap-1">
         {icon} <EnvVar {...{ variable, value }} />
       </div>
-      : <EnvVar {...{ variable, value }} />}
+      :<EnvVar {...{ variable, value }} />}
   </div>;
 
 const renderHighlightText = (
@@ -191,7 +191,7 @@ export default function AdminAppInsightsClient({
             />}
           {((!codeMeta?.didError && noFork) || debug) &&
             <ScoreCardRow
-              icon={<FaCircleInfo
+              icon={<FaCircleInfo 
                 size={15}
                 className="text-blue-500 translate-y-[1px]"
               />}
@@ -367,33 +367,33 @@ export default function AdminAppInsightsClient({
               noConfiguredMetaDescription ||
               debug
             ) && <ScoreCardRow
-                icon={<HiOutlineDocumentText
-                  size={18}
-                  className="translate-x-[1px] translate-y-[-1px]"
-                />}
-                content="Configure meta"
-                expandContent={<>
-                  Configure site title (visible in search results and browser tab)
-                  and site description (visible in search results):
-                  {' '}
-                  <div className="flex flex-col gap-y-4 mt-3">
-                    {(
-                      noConfiguredMetaTitle ||
-                      debug
-                    ) && renderLabeledEnvVar(
-                      'Site title',
-                      'NEXT_PUBLIC_META_TITLE',
-                    )}
-                    {(
-                      noConfiguredMetaDescription ||
-                      debug
-                    ) && renderLabeledEnvVar(
-                      'Site description',
-                      'NEXT_PUBLIC_META_DESCRIPTION',
-                    )}
-                  </div>
-                </>}
+              icon={<HiOutlineDocumentText
+                size={18}
+                className="translate-x-[1px] translate-y-[-1px]"
               />}
+              content="Configure meta"
+              expandContent={<>
+                Configure site title (visible in search results and browser tab)
+                and site description (visible in search results):
+                {' '}
+                <div className="flex flex-col gap-y-4 mt-3">
+                  {(
+                    noConfiguredMetaTitle ||
+                    debug
+                  ) && renderLabeledEnvVar(
+                    'Site title',
+                    'NEXT_PUBLIC_META_TITLE',
+                  )}
+                  {(
+                    noConfiguredMetaDescription ||
+                    debug
+                  ) && renderLabeledEnvVar(
+                    'Site description',
+                    'NEXT_PUBLIC_META_DESCRIPTION',
+                  )}
+                </div>
+              </>}
+            />}
             {(noStaticOptimization || debug) && <ScoreCardRow
               icon={<RiSpeedMiniLine
                 size={19}
