@@ -14,6 +14,7 @@ import {
   VERCEL_GIT_COMMIT_SHA_SHORT,
   DEBUG_OUTPUTS_ENABLED,
 } from '@/app/config';
+import localFont from 'next/font/local';
 import AppStateProvider from '@/app/AppStateProvider';
 import ToasterWithThemes from '@/toast/ToasterWithThemes';
 import PhotoEscapeHandler from '@/photo/PhotoEscapeHandler';
@@ -87,6 +88,12 @@ export const metadata: Metadata = {
   },
 };
 
+const abcDiatype = localFont({
+  src: '../public/fonts/ABCDiatype.ttf',
+  variable: '--font-abc-diatype',
+  display: 'swap',
+});
+
 export default function RootLayout({
   children,
 }: {
@@ -101,6 +108,7 @@ export default function RootLayout({
       <body className={clsx(
         // Center on large screens
         '3xl:flex flex-col items-center',
+        abcDiatype.variable,
       )}>
         <AppStateProvider areAdminDebugToolsEnabled={ADMIN_DEBUG_TOOLS_ENABLED}>
           <AppTextProvider>
