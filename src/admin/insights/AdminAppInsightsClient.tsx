@@ -174,7 +174,124 @@ export default function AdminAppInsightsClient({
 
   return (
     <ScoreCardContainer>
-      {/* Source code warnings removed */}
+      {(codeMeta || debug) && <>
+        <ScoreCard title="Source code">
+          {(codeMeta?.didError || debug) &&
+            <ScoreCardRow
+              icon={<IoSyncCircle
+                size={18}
+                className={TEXT_COLOR_WARNING}
+              />}
+              content={<>
+                <span>Could not analyze source code</span>
+                {renderTooltipContent(
+                  'Could not connect to GitHub API. Try refreshing.',
+                )}
+              </>}
+            />}
+          {((!codeMeta?.didError && noFork) || debug) &&
+            <ScoreCardRow
+              icon={<FaCircleInfo
+                size={15}
+                className="text-blue-500 translate-y-[1px]"
+              />}
+              content="This template is not forked"
+              expandContent={<>
+                <AdminLink href={TEMPLATE_REPO_URL_FORK}>
+                  Fork original template
+                </AdminLink>
+                {' '}
+                to receive the latest fixes and features.
+                {' '}
+                Additional instructions in
+                {' '}
+                {readmeAnchor('receiving-updates')}.
+              </>}
+            />}
+          {((!codeMeta?.didError && forkBehind) || debug) && <ScoreCardRow
+            icon={<IoSyncCircle
+              size={18}
+              className="text-blue-500"
+            />}
+            content={<>
+              This fork is
+              {' '}
+              {renderHighlightText(
+                pluralize(codeMeta?.behindBy ?? DEBUG_BEHIND_BY, 'commit'),
+                'blue',
+              )}
+              {' '}
+              behind
+            </>}
+            expandContent={<>
+              <AdminLink href={codeMeta?.urlRepo ?? ''}>
+                Sync your fork
+              </AdminLink>
+              {' '}
+              to receive the latest fixes and features.
+            </>}
+          />}
+          <ScoreCardRow
+            icon={<BiLogoGithub size={17} />}
+            content={<div
+              className="flex flex-wrap gap-x-4 gap-y-1 overflow-auto"
+            >
+              <div className="flex items-center gap-1 *:whitespace-nowrap">
+                <a
+                  href={codeMeta?.urlOwner}
+                  target="blank"
+                >
+                  {codeMeta?.owner ?? TEMPLATE_REPO_OWNER}
+                </a>
+                <div>/</div>
+                <a
+                  href={codeMeta?.urlRepo}
+                  target="blank"
+                >
+                  {codeMeta?.repo ?? TEMPLATE_REPO_NAME}
+                </a>
+              </div>
+              <div className="hidden sm:flex items-center gap-1 min-w-0">
+                <BiGitBranch size={17} />
+                {branchLink}
+              </div>
+            </div>}
+          />
+          <ScoreCardRow
+            className="sm:hidden"
+            icon={<BiGitBranch size={17} />}
+            content={branchLink}
+          />
+          <ScoreCardRow
+            icon={<BiGitCommit
+              size={18}
+              className="translate-y-[-0.5px]"
+            />}
+            content={<a
+              href={codeMeta?.urlCommit}
+              target="blank"
+              className="flex items-center gap-2"
+            >
+              <span className="text-medium hidden sm:inline-block">
+                {VERCEL_GIT_COMMIT_SHA_SHORT ?? DEBUG_COMMIT_SHA}
+              </span>
+              <span className="truncate">
+                {VERCEL_GIT_COMMIT_MESSAGE ?? DEBUG_COMMIT_MESSAGE}
+              </span>
+            </a>}
+          />
+          <ScoreCardRow
+            icon={<IconNext className="self-start translate-y-px" />}
+            content={<Link
+              // eslint-disable-next-line max-len
+              href={`https://github.com/vercel/next.js/releases/tag/v${nextVersion}`}
+              target="blank"
+            >
+              Next.js {nextVersion}
+            </Link>}
+          />
+        </ScoreCard>
+      </>}
       <ScoreCard title="Template recommendations">
         {(hasTemplateRecommendations(insights) || debug)
           ? <>
