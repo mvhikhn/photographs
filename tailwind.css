@@ -21,8 +21,8 @@ html {
 }
 
 @theme {
-  --font-mono: var(--font-abc-diatype), "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace;
-  --font-sans: var(--font-abc-diatype), ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  --font-mono: var(--font-custom), "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace;
+  --font-sans: var(--font-custom), ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
 
   --breakpoint-xs: 24.5rem;
   --breakpoint-3xl: 102rem;

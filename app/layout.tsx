@@ -88,9 +88,9 @@ export const metadata: Metadata = {
   },
 };
 
-const abcDiatype = localFont({
-  src: '../public/fonts/ABCDiatype.ttf',
-  variable: '--font-abc-diatype',
+const customFont = localFont({
+  src: '../public/fonts/CustomFont.ttf',
+  variable: '--font-custom',
   display: 'swap',
 });
 
@@ -108,7 +108,7 @@ export default function RootLayout({
       <body className={clsx(
         // Center on large screens
         '3xl:flex flex-col items-center',
-        abcDiatype.variable,
+        customFont.variable,
       )}>
         <AppStateProvider areAdminDebugToolsEnabled={ADMIN_DEBUG_TOOLS_ENABLED}>
           <AppTextProvider>
